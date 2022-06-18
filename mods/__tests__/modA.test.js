@@ -1,6 +1,4 @@
 import { jest, it, expect } from '@jest/globals';
-import { modA } from '../index.js';
-import { someService } from '../../services/index.js';
 
 // jest.mock('../../services/someService', () => ({
 //   __esModule: true,
@@ -12,6 +10,9 @@ import { someService } from '../../services/index.js';
 jest.unstable_mockModule('../../services/index.js', () => ({
   someService: jest.fn(),
 }));
+
+const { modA } = await import('../index.js');
+const { someService } = await import('../../services/index.js');
 
 it('should call some service', async () => {
   await modA();
